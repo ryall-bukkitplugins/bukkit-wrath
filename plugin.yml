@@ -1,0 +1,9 @@
+name: Wrath
+main: me.ryall.wrath.Wrath
+version: 1.0.0
+description: Strike players down where they stand (with lightning).
+author: SirHedgehog
+commands:
+    wrath:
+        description: Wrath command
+        usage: /paint <command> [params]
