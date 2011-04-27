@@ -66,7 +66,7 @@ public class Wrath extends JavaPlugin
         PluginManager pm = getServer().getPluginManager();
         
         pm.registerEvent(Event.Type.PLUGIN_ENABLE, serverListener, Event.Priority.Normal, this);
-        pm.registerEvent(Event.Type.ENTITY_DEATH, entityListener, Event.Priority.Lowest, this);
+        pm.registerEvent(Event.Type.ENTITY_DEATH, entityListener, Event.Priority.Highest, this);
     }
     
     public boolean onCommand(CommandSender _sender, Command _command, String _label, String[] _args)

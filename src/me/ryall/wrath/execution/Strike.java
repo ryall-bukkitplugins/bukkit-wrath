@@ -19,9 +19,6 @@ public class Strike extends Executioner
     public void update(Player _target)
     {
         _target.getWorld().strikeLightning(_target.getLocation());
-        
-        // Make sure damage occurs before death, so that other plugins work properly.
-        _target.damage(_target.getHealth() - 1);
-        _target.damage(1);
+        _target.damage(_target.getHealth());
     }
 }
