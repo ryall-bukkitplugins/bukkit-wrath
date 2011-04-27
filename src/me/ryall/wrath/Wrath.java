@@ -11,6 +11,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// TODO:
+// Add a list of "doomed" players when wrath is called and ensure that they die.
+// If a message, "%player% is already dying a slow and painful death."
+
 public class Wrath extends JavaPlugin
 {
     public static String PLUGIN_NAME = "Wrath";
@@ -56,7 +60,8 @@ public class Wrath extends JavaPlugin
                             if (player.getName().equalsIgnoreCase(_args[1]))
                             {
                                 world.strikeLightning(player.getLocation());
-                                player.damage(player.getHealth());
+                                player.damage(player.getHealth() - 1);
+                                player.damage(1);
                                 
                                 return true;
                             }
@@ -71,7 +76,7 @@ public class Wrath extends JavaPlugin
                     Player player = (Player)_sender;
                     
                     if (permissionManager.hasStrikePermission(player))
-                        communicationManager.command(player, "/wrath strike <player>", "Strike down a player with lightning");
+                        communicationManager.command(player, "/wrath strike <player>", "Strike a player down with lightning");
                 }
             }
         

@@ -1,0 +1,6 @@
+# Messages that can be displayed when a wrath action is executed.
+Messages:
+    # Whether or not message should be shown at all.
+    Enabled: true
+    # The message to display for "/wrath strike" (leave blank for none).
+    Strike: "%player% struck %victim% down with lightning"

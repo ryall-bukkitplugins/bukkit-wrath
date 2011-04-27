@@ -35,6 +35,36 @@ public class PermissionManager
             hasPermission(_player, "*");
     }
     
+    public boolean hasDrownPermission(Player _player)
+    {
+        return hasGlobalPermission(_player) || 
+            hasPermission(_player, PERMISSIONS_PREFIX + "drown");
+    }
+    
+    public boolean hasExplodePermission(Player _player)
+    {
+        return hasGlobalPermission(_player) || 
+            hasPermission(_player, PERMISSIONS_PREFIX + "explode");
+    }
+    
+    public boolean hasIgnitePermission(Player _player)
+    {
+        return hasGlobalPermission(_player) || 
+            hasPermission(_player, PERMISSIONS_PREFIX + "ignite");
+    }
+    
+    public boolean hasImpalePermission(Player _player)
+    {
+        return hasGlobalPermission(_player) || 
+            hasPermission(_player, PERMISSIONS_PREFIX + "impale");
+    }
+    
+    public boolean hasRavagePermission(Player _player)
+    {
+        return hasGlobalPermission(_player) || 
+            hasPermission(_player, PERMISSIONS_PREFIX + "ravage");
+    }
+    
     public boolean hasStrikePermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
