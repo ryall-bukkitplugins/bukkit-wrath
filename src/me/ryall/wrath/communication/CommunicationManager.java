@@ -2,6 +2,7 @@ package me.ryall.wrath.communication;
 
 import org.bukkit.ChatColor;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.ryall.wrath.Wrath;
@@ -12,17 +13,24 @@ public class CommunicationManager
     
     public void message(Player _player, String _message)
     {
-        _player.sendMessage(MESSAGE_HEADER + _message);
+        if (_player != null)
+            _player.sendMessage(MESSAGE_HEADER + _message);
+        else
+            Wrath.get().logInfo(_message);
     }
     
     public void error(Player _player, String _message)
     {
-        _player.sendMessage(MESSAGE_HEADER + ChatColor.RED + "Error: " + _message);
+        if (_player != null)
+            _player.sendMessage(MESSAGE_HEADER + ChatColor.RED + "Error: " + _message);
+        else
+            Wrath.get().logError(_message);
     }
 
     public void command(Player _player, String _command, String _description)
     {
-        _player.sendMessage(MESSAGE_HEADER + ChatColor.GOLD + _command + ChatColor.WHITE + ": " + _description);
+        if (_player != null)
+            _player.sendMessage(MESSAGE_HEADER + ChatColor.GOLD + _command + ChatColor.WHITE + ": " + _description);
     }
     
     public void broadcast(Player _except, String _message)
@@ -35,5 +43,13 @@ public class CommunicationManager
     				message(player, _message);
     		}
     	}
+    }
+    
+    public String parse(String _message, CommandSender _sender, Player _target)
+    {
+        String player = (_sender instanceof Player) ? ((Player)_sender).getName() : "Console";
+        String target = _target.getName();
+        
+        return _message.replaceAll("%player%", player).replaceAll("%target%", target);
     }
 }

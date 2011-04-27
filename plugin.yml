@@ -6,4 +6,4 @@ author: SirHedgehog
 commands:
     wrath:
         description: Wrath command
-        usage: /wrath <death> <player>
+        usage: /wrath <type> <player> [flags]
