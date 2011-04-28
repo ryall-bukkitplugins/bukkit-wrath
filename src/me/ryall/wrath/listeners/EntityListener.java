@@ -11,7 +11,7 @@ public class EntityListener extends org.bukkit.event.entity.EntityListener
     {
         if (event.getEntity() instanceof Player)
         {
-            ExecutionManager.playerDied((Player)event.getEntity());
+            ExecutionManager.killed((Player)event.getEntity());
         }
     }
 }

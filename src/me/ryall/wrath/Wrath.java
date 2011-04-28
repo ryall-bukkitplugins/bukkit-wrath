@@ -99,12 +99,12 @@ public class Wrath extends JavaPlugin
                     {
                         if (executioner.hasPermission(player))
                         {
-                            if (!ExecutionManager.isExecuting(target))
-                            {
-                                ExecutionManager.execute(executioner, player, target, flags);
-                            }
-                            else
-                                communicationManager.error(player, target.getName() + " is already dying a slow horrible death.");
+                            if (ExecutionManager.isExecuting(target))
+                            	ExecutionManager.release(target);
+                            
+                            ExecutionManager.execute(executioner, player, target, flags);
+                                
+                            communicationManager.message(player, "Executed the '" + commandName + "' command on '" + playerName + "'");
                         }
                         else
                             communicationManager.error(player, "You don't have permission to use the '" + commandName + "' command.");

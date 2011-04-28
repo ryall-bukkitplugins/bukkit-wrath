@@ -1,6 +1,7 @@
 package me.ryall.wrath.execution;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import me.ryall.wrath.Wrath;
@@ -9,15 +10,15 @@ import org.bukkit.entity.Player;
 
 public class ExecutionManager
 {
-    private static HashMap<String, Executioner> executioners = new HashMap<String, Executioner>();
+    private static String[] executioners = new String[] { "strike" };
     private static HashMap<String, Sentence> sentences = new HashMap<String, Sentence>();
     
-    static 
+    /*static 
     {
         executioners.put("strike", new Strike());
-    };
+    };*/
     
-    public static Executioner getExecutioner(String _name)
+    /*public static Executioner getExecutioner(String _name)
     {
         _name = _name.toLowerCase();
         
@@ -25,8 +26,13 @@ public class ExecutionManager
             return executioners.get(_name);
         
         return null;
-    }
+    }*/
     
+	public static boolean executionerExists(String _name) 
+	{
+		return Arrays.asList(executioners).contains(_name.toLowerCase());
+	}
+	
     public static boolean isExecuting(Player _target)
     {
         return sentences.containsKey(_target.getName());
@@ -56,7 +62,19 @@ public class ExecutionManager
         }
     }
     
-    public static void playerDied(Player _player)
+	public static void release(Player _target) 
+	{
+		Sentence sentence = sentences.get(_target.getName());
+		
+		if (sentence != null)
+        {
+			sentence.executioner.stop(_target);
+			
+			sentences.remove(_target.getName());
+        }
+	}
+    
+    public static void killed(Player _player)
     {
         Sentence sentence = sentences.get(_player.getName());
         
@@ -70,7 +88,15 @@ public class ExecutionManager
                 Wrath.get().getComms().broadcast(null, message);
             }
             
-            sentences.remove(_player.getName());
+            release(_player);
         }
     }
+    
+	private static Executioner createExecutioner(String _name)
+	{
+		if (_name.equalsIgnoreCase("strike"))
+			return new Strike();
+		
+		return null;
+	}
 }
