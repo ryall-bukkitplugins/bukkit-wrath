@@ -89,7 +89,7 @@ public class Wrath extends JavaPlugin
                 }
                 
                 // Check the args against the system and execute the target if we can.
-                Executioner executioner = ExecutionManager.getExecutioner(commandName);
+                Executioner executioner = ExecutionManager.createExecutioner(commandName);
                 
                 if (executioner != null)
                 {
@@ -99,10 +99,7 @@ public class Wrath extends JavaPlugin
                     {
                         if (executioner.hasPermission(player))
                         {
-                            if (ExecutionManager.isExecuting(target))
-                            	ExecutionManager.release(target);
-                            
-                            ExecutionManager.execute(executioner, player, target, flags);
+                            ExecutionManager.add(executioner, player, target, flags);
                                 
                             communicationManager.message(player, "Executed the '" + commandName + "' command on '" + playerName + "'");
                         }

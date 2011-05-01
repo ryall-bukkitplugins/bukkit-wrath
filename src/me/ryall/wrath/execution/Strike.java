@@ -16,9 +16,17 @@ public class Strike extends Executioner
         return Wrath.get().getConfig().getStrikeMessage();
     }
 
+	public void start(Player _target) 
+	{
+	}
+    
     public void update(Player _target)
     {
         _target.getWorld().strikeLightning(_target.getLocation());
         _target.damage(_target.getHealth());
     }
+
+	public void stop(Player _target) 
+	{
+	}
 }
