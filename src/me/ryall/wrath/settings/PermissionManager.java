@@ -30,7 +30,8 @@ public class PermissionManager
     
     protected boolean hasGlobalPermission(Player _player)
     {
-        return (permissions == null && _player.isOp()) || 
+        return _player == null ||
+            (permissions == null && _player.isOp()) || 
             hasPermission(_player, PERMISSIONS_PREFIX + "*") || 
             hasPermission(_player, "*");
     }
