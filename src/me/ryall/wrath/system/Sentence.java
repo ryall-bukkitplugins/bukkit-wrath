@@ -1,4 +1,4 @@
-package me.ryall.wrath.execution;
+package me.ryall.wrath.system;
 
 import java.util.ArrayList;
 

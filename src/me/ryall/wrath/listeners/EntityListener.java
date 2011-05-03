@@ -1,6 +1,6 @@
 package me.ryall.wrath.listeners;
 
-import me.ryall.wrath.execution.ExecutionManager;
+import me.ryall.wrath.system.ExecutionManager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;

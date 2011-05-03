@@ -1,4 +1,8 @@
-# Messages that can be displayed when a wrath action is executed.
-Messages:
-    # The message to display for "/wrath strike" (leave blank for none).
-    Strike: "%player% struck %target% down with lightning"
+# The options for "/wrath drown"
+Drown:
+    # The message to display when a player is killed with this command (leave blank for none).
+    Message: "%target% was slowly drowned by %player%"
+# The options for "/wrath strike"
+Strike:
+    # The message to display when a player is killed with this command (leave blank for none).
+    Message: "%player% struck %target% down with lightning"

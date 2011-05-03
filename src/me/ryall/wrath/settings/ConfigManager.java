@@ -15,7 +15,13 @@ public class ConfigManager
 
     public String getStrikeMessage()
     {
-        String message = config.getString("Messages.Strike", null);
+        String message = config.getString("Strike.Message", null);
+        return message == null || message.isEmpty() ? null : message;
+    }
+
+    public String getDrownMessage()
+    {
+        String message = config.getString("Drown.Message", null);
         return message == null || message.isEmpty() ? null : message;
     }
 }

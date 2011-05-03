@@ -1,4 +1,4 @@
-package me.ryall.wrath.execution;
+package me.ryall.wrath.system;
 
 import org.bukkit.entity.Player;
 
@@ -8,9 +8,9 @@ public abstract class Executioner
 
     public abstract String getMessage();
 
-    public abstract void start(Player _target);
+    public abstract void begin(Player _target);
 
     public abstract void update(Player _target);
 
-    public abstract void stop(Player _target);
+    public abstract void end(Player _target);
 }

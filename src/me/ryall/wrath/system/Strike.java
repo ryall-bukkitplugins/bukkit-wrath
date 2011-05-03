@@ -1,4 +1,4 @@
-package me.ryall.wrath.execution;
+package me.ryall.wrath.system;
 
 import me.ryall.wrath.Wrath;
 
@@ -16,7 +16,7 @@ public class Strike extends Executioner
         return Wrath.get().getConfig().getStrikeMessage();
     }
 
-    public void start(Player _target)
+    public void begin(Player _target)
     {
         _target.getWorld().strikeLightning(_target.getLocation());
         _target.damage(_target.getHealth());
@@ -24,10 +24,9 @@ public class Strike extends Executioner
 
     public void update(Player _target)
     {
-        
     }
 
-    public void stop(Player _target)
+    public void end(Player _target)
     {
     }
 }

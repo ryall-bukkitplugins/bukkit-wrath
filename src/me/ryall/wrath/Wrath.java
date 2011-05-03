@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import me.ryall.wrath.communication.CommunicationManager;
-import me.ryall.wrath.execution.ExecutionManager;
-import me.ryall.wrath.execution.Executioner;
 import me.ryall.wrath.listeners.EntityListener;
 import me.ryall.wrath.listeners.ServerListener;
 import me.ryall.wrath.settings.ConfigManager;
 import me.ryall.wrath.settings.PermissionManager;
+import me.ryall.wrath.system.ExecutionManager;
+import me.ryall.wrath.system.Executioner;
 
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -151,7 +151,7 @@ public class Wrath extends JavaPlugin
         return permissionManager;
     }
 
-    public CommunicationManager getComms()
+    public CommunicationManager getCommunicationManager()
     {
         return communicationManager;
     }

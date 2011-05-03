@@ -1,4 +1,4 @@
-package me.ryall.wrath.execution;
+package me.ryall.wrath.system;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,8 +35,8 @@ public class ExecutionManager
         sentences.put(_target.getName(), sentence);
 
         // This should be in a loop, eventually, to allow damage over time.
-        _executioner.start(_target);
-        update();
+        _executioner.begin(_target);
+        _executioner.update(_target);
     }
 
     public static void update()
@@ -58,8 +58,8 @@ public class ExecutionManager
 
             if (message != null && !sentence.flags.contains("-s"))
             {
-                message = Wrath.get().getComms().parse(message, sentence.player, sentence.target);
-                Wrath.get().getComms().broadcast(null, message);
+                message = Wrath.get().getCommunicationManager().parse(message, sentence.player, sentence.target);
+                Wrath.get().getCommunicationManager().broadcast(null, message);
             }
 
             remove(_player);
@@ -72,7 +72,7 @@ public class ExecutionManager
 
         if (sentence != null)
         {
-            sentence.executioner.stop(_target);
+            sentence.executioner.end(_target);
 
             sentences.remove(_target.getName());
         }
