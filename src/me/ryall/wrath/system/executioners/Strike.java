@@ -1,6 +1,7 @@
-package me.ryall.wrath.system;
+package me.ryall.wrath.system.executioners;
 
 import me.ryall.wrath.Wrath;
+import me.ryall.wrath.system.Executioner;
 
 import org.bukkit.entity.Player;
 

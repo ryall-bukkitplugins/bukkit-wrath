@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import me.ryall.wrath.Wrath;
+import me.ryall.wrath.system.executioners.Drown;
+import me.ryall.wrath.system.executioners.Strike;
 
 import org.bukkit.entity.Player;
 
@@ -11,8 +13,16 @@ public class ExecutionManager
 {
     private static HashMap<String, Sentence> sentences = new HashMap<String, Sentence>();
 
+    public static HashMap<String, Sentence> getSentences()
+    {
+        return sentences;
+    }
+    
     public static Executioner createExecutioner(String _name)
     {
+        if (_name.equalsIgnoreCase("drown"))
+            return new Drown();
+        
         if (_name.equalsIgnoreCase("strike"))
             return new Strike();
 

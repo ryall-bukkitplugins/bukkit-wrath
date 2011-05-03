@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import me.ryall.wrath.communication.CommunicationManager;
+import me.ryall.wrath.listeners.BlockListener;
 import me.ryall.wrath.listeners.EntityListener;
+import me.ryall.wrath.listeners.PlayerListener;
 import me.ryall.wrath.listeners.ServerListener;
 import me.ryall.wrath.settings.ConfigManager;
 import me.ryall.wrath.settings.PermissionManager;
@@ -28,6 +30,8 @@ public class Wrath extends JavaPlugin
     private Logger log;
     private ServerListener serverListener;
     private EntityListener entityListener;
+    private BlockListener blockListener;
+    private PlayerListener playerListener;
     private ConfigManager configManager;
     private PermissionManager permissionManager;
     private CommunicationManager communicationManager;
@@ -44,15 +48,14 @@ public class Wrath extends JavaPlugin
 
         serverListener = new ServerListener();
         entityListener = new EntityListener();
+        blockListener = new BlockListener();
+        playerListener = new PlayerListener();
 
         configManager = new ConfigManager();
         permissionManager = new PermissionManager();
         communicationManager = new CommunicationManager();
 
         registerEvents();
-
-        // getServer().getScheduler().scheduleSyncRepeatingTask(this, update, 0,
-        // 0);
 
         logInfo("Started");
     }
@@ -68,6 +71,8 @@ public class Wrath extends JavaPlugin
 
         pm.registerEvent(Event.Type.PLUGIN_ENABLE, serverListener, Event.Priority.Normal, this);
         pm.registerEvent(Event.Type.ENTITY_DEATH, entityListener, Event.Priority.Highest, this);
+        pm.registerEvent(Event.Type.BLOCK_FROMTO, blockListener, Event.Priority.Highest, this);
+        pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Highest, this);
     }
 
     public boolean onCommand(CommandSender _sender, Command _command, String _label, String[] _args)
@@ -89,14 +94,19 @@ public class Wrath extends JavaPlugin
                     flags.add(_args[i]);
                 }
 
-                // Check the args against the system and execute the target if
-                // we can.
+                // Check the args against the system and execute the target if we can.
                 Executioner executioner = ExecutionManager.createExecutioner(commandName);
 
                 if (executioner != null)
                 {
                     Player target = findPlayer(playerName);
-
+                    
+                    if (playerName.equals("."))
+                    {
+                        target = player;
+                        playerName = (player != null) ? player.getName() : "Console";
+                    }
+                    
                     if (target != null)
                     {
                         if (executioner.hasPermission(player))

@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 
 public class Sentence
 {
-    Executioner executioner;
-    Player player;
-    Player target;
-    ArrayList<String> flags;
+    public Executioner executioner;
+    public Player player;
+    public Player target;
+    public ArrayList<String> flags;
 }
