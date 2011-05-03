@@ -7,11 +7,11 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class EntityListener extends org.bukkit.event.entity.EntityListener
 {
-    public void onEntityDeath(EntityDeathEvent event) 
+    public void onEntityDeath(EntityDeathEvent event)
     {
         if (event.getEntity() instanceof Player)
         {
-            ExecutionManager.killed((Player)event.getEntity());
+            ExecutionManager.killed((Player) event.getEntity());
         }
     }
 }
