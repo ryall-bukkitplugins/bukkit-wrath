@@ -43,6 +43,10 @@ public class Drown extends Executioner
 
         waterBlock.setType(Material.WATER);
     }
+    
+    public void update(Player _target)
+    {
+    }
 
     public void move(Player _target)
     {

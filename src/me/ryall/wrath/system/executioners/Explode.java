@@ -7,7 +7,7 @@ import me.ryall.wrath.system.Executioner;
 
 public class Explode extends Executioner
 {
-    int stepsRemaining;
+    int secondsRemaining;
     
     public boolean hasPermission(Player _player)
     {
@@ -21,22 +21,45 @@ public class Explode extends Executioner
 
     public void begin(Player _target)
     {
-        stepsRemaining = Wrath.get().getConfig().getExplodeSteps();
+        secondsRemaining = 5;//Wrath.get().getConfig().getExplodeSteps();
         
-        if (stepsRemaining > 0)
+        if (secondsRemaining > 0)
         {
             Wrath.get().getCommunicationManager().message(_target, "You have been set to explode after " + 
-                    stepsRemaining + " " + Wrath.get().getCommunicationManager().pluralise(stepsRemaining, "step") + "!");
+                    secondsRemaining + " " + Wrath.get().getCommunicationManager().pluralise(secondsRemaining, "second") + "!");
+        }
+    }
+    
+    public void update(Player _target)
+    {
+        if (--secondsRemaining > 0)
+        {
+            Wrath.get().getCommunicationManager().message(_target, "Exploding in " + 
+                    secondsRemaining + " " + Wrath.get().getCommunicationManager().pluralise(secondsRemaining, "second") + "!");
+        }
+        else
+        {
+            Wrath.get().getCommunicationManager().message(_target, "You have exploded!");
+            
+            //Location location = _target.getLocation();
+            
+            //CraftWorld cw = (CraftWorld)_target.getWorld();
+            //CraftPlayer cp = (CraftPlayer)_target;
+            
+            //Explosion explosion = new Explosion(cw.getHandle(), cp.getHandle(), location.getX(), location.getY(), location.getZ(), 3);
+            //explosion.a();
+            
+            //cw.getHandle().a("explode", location.getX(), location.getY(), location.getZ(), 3, 3, 3);
+            
+            //Block block = _target.getWorld().getBlockAt(_target.getLocation());
+            //block.setType(Material.TNT);
+        
+            _target.damage(_target.getHealth());
         }
     }
 
     public void move(Player _target)
     {
-        if (stepsRemaining > 0)
-        {
-            Wrath.get().getCommunicationManager().message(_target, "Careful! You'll explode after " + 
-                    stepsRemaining + " " + Wrath.get().getCommunicationManager().pluralise(stepsRemaining, "step") + "!");
-        }
     }
 
     public void end(Player _target)

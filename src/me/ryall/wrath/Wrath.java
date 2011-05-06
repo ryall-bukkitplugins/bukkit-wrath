@@ -35,6 +35,15 @@ public class Wrath extends JavaPlugin
     private ConfigManager configManager;
     private PermissionManager permissionManager;
     private CommunicationManager communicationManager;
+    
+    private int updateHandle;
+    private Runnable update = new Runnable() 
+    {
+        public void run() 
+        {
+            ExecutionManager.onUpdate();
+        }
+    };
 
     public static Wrath get()
     {
@@ -56,12 +65,16 @@ public class Wrath extends JavaPlugin
         communicationManager = new CommunicationManager();
 
         registerEvents();
+        
+        updateHandle = getServer().getScheduler().scheduleSyncRepeatingTask(this, update, 20, 20);
 
         logInfo("Started");
     }
 
     public void onDisable()
     {
+        getServer().getScheduler().cancelTask(updateHandle);
+        
         logInfo("Stopped");
     }
 

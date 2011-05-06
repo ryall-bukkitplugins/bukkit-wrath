@@ -23,6 +23,10 @@ public class Strike extends Executioner
         _target.damage(_target.getHealth());
     }
 
+    public void update(Player _target)
+    {
+    }
+    
     public void move(Player _target)
     {
     }

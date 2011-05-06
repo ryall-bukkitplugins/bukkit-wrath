@@ -47,9 +47,7 @@ public class ExecutionManager
 
         sentences.put(_target.getName(), sentence);
 
-        // This should be in a loop, eventually, to allow damage over time.
         _executioner.begin(_target);
-        _executioner.move(_target);
     }
     
     public static void remove(Player _target)
@@ -64,14 +62,14 @@ public class ExecutionManager
         }
     }
 
-    /*public static void onUpdate()
+    public static void onUpdate()
     {
         for (String target : sentences.keySet())
         {
             Sentence sentence = sentences.get(target);
-            sentence.executioner.move(sentence.target);
+            sentence.executioner.update(sentence.target);
         }
-    }*/
+    }
     
     public static void onMove(Player _player)
     {
