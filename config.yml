@@ -1,8 +1,14 @@
 # The options for "/wrath drown"
 Drown:
     # The message to display when a player is killed with this command (leave blank for none).
-    Message: "%target% was slowly drowned by %player%"
+    Message: "%target% was slowly drowned by %player%."
+# The options for "/wrath explode"
+Explode:
+    # The message to display when a player is killed with this command (leave blank for none).
+    Message: "%target% exploded after %player% replaced their blood with nitroglycerin."
+    # The number of steps the player can take before exploding (set to 0 for an instant explosion).
+    Steps: 5
 # The options for "/wrath strike"
 Strike:
     # The message to display when a player is killed with this command (leave blank for none).
-    Message: "%player% struck %target% down with lightning"
+    Message: "%player% struck %target% down with lightning."

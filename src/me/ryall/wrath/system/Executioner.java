@@ -10,7 +10,7 @@ public abstract class Executioner
 
     public abstract void begin(Player _target);
 
-    public abstract void update(Player _target);
+    public abstract void move(Player _target);
 
     public abstract void end(Player _target);
 }

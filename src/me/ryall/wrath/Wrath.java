@@ -126,6 +126,9 @@ public class Wrath extends JavaPlugin
             {
                 if (player != null)
                 {
+                    if (permissionManager.hasExplodePermission(player))
+                        communicationManager.command(player, "/wrath explode <player>", "Make a player explode");
+                    
                     if (permissionManager.hasStrikePermission(player))
                         communicationManager.command(player, "/wrath strike <player>", "Kill a player with lightning");
                 }

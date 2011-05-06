@@ -52,4 +52,9 @@ public class CommunicationManager
 
         return _message.replaceAll("%player%", player).replaceAll("%target%", target);
     }
+
+    public String pluralise(int _number, String _word)
+    {
+        return (_number == 1) ? _word : _word + "s";
+    }
 }

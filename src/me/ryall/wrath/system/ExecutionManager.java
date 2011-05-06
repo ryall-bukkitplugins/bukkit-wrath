@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import me.ryall.wrath.Wrath;
-import me.ryall.wrath.system.executioners.Drown;
+import me.ryall.wrath.system.executioners.Explode;
 import me.ryall.wrath.system.executioners.Strike;
 
 import org.bukkit.entity.Player;
@@ -20,8 +20,11 @@ public class ExecutionManager
     
     public static Executioner createExecutioner(String _name)
     {
-        if (_name.equalsIgnoreCase("drown"))
-            return new Drown();
+        if (_name.equalsIgnoreCase("explode"))
+            return new Explode();
+        
+        //if (_name.equalsIgnoreCase("drown"))
+        //    return new Drown();
         
         if (_name.equalsIgnoreCase("strike"))
             return new Strike();
@@ -46,19 +49,41 @@ public class ExecutionManager
 
         // This should be in a loop, eventually, to allow damage over time.
         _executioner.begin(_target);
-        _executioner.update(_target);
+        _executioner.move(_target);
+    }
+    
+    public static void remove(Player _target)
+    {
+        Sentence sentence = sentences.get(_target.getName());
+
+        if (sentence != null)
+        {
+            sentence.executioner.end(_target);
+
+            sentences.remove(_target.getName());
+        }
     }
 
-    public static void update()
+    /*public static void onUpdate()
     {
         for (String target : sentences.keySet())
         {
             Sentence sentence = sentences.get(target);
-            sentence.executioner.update(sentence.target);
+            sentence.executioner.move(sentence.target);
+        }
+    }*/
+    
+    public static void onMove(Player _player)
+    {
+        Sentence sentence = sentences.get(_player.getName());
+
+        if (sentence != null)
+        {
+            sentence.executioner.move(_player);
         }
     }
 
-    public static void killed(Player _player)
+    public static void onDeath(Player _player)
     {
         Sentence sentence = sentences.get(_player.getName());
 
@@ -73,18 +98,6 @@ public class ExecutionManager
             }
 
             remove(_player);
-        }
-    }
-
-    private static void remove(Player _target)
-    {
-        Sentence sentence = sentences.get(_target.getName());
-
-        if (sentence != null)
-        {
-            sentence.executioner.end(_target);
-
-            sentences.remove(_target.getName());
         }
     }
 }

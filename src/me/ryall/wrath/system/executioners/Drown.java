@@ -1,7 +1,6 @@
 package me.ryall.wrath.system.executioners;
 
 import me.ryall.wrath.Wrath;
-import me.ryall.wrath.system.BlockInfo;
 import me.ryall.wrath.system.Executioner;
 
 import org.bukkit.Location;
@@ -45,7 +44,7 @@ public class Drown extends Executioner
         waterBlock.setType(Material.WATER);
     }
 
-    public void update(Player _target)
+    public void move(Player _target)
     {
         _target.teleport(position);
         

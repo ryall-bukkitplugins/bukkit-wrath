@@ -9,10 +9,11 @@ public class PlayerListener extends org.bukkit.event.player.PlayerListener
 {
     public void onPlayerMove(PlayerMoveEvent _event)
     {
-        ExecutionManager.update();
+        ExecutionManager.onMove(_event.getPlayer());
     }
     
     public void onPlayerQuit(PlayerQuitEvent _event)
     {
+        //ExecutionManager.onQuit(_event.getPlayer());
     }
 }

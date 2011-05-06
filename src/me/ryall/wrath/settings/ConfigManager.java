@@ -13,15 +13,26 @@ public class ConfigManager
         config.load();
     }
 
-    public String getStrikeMessage()
-    {
-        String message = config.getString("Strike.Message", null);
-        return message == null || message.isEmpty() ? null : message;
-    }
-
     public String getDrownMessage()
     {
         String message = config.getString("Drown.Message", null);
+        return message == null || message.isEmpty() ? null : message;
+    }
+    
+    public String getExplodeMessage()
+    {
+        String message = config.getString("Explode.Message", null);
+        return message == null || message.isEmpty() ? null : message;
+    }
+    
+    public int getExplodeSteps()
+    {
+        return config.getInt("Explode.Steps", 0);
+    }
+    
+    public String getStrikeMessage()
+    {
+        String message = config.getString("Strike.Message", null);
         return message == null || message.isEmpty() ? null : message;
     }
 }
