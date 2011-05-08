@@ -25,9 +25,9 @@ public class ConfigManager
         return message == null || message.isEmpty() ? null : message;
     }
     
-    public int getExplodeSteps()
+    public int getExplodeSeconds()
     {
-        return config.getInt("Explode.Steps", 0);
+        return config.getInt("Explode.Seconds", 0);
     }
     
     public String getStrikeMessage()

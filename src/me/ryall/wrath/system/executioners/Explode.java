@@ -21,13 +21,15 @@ public class Explode extends Executioner
 
     public void begin(Player _target)
     {
-        secondsRemaining = 5;//Wrath.get().getConfig().getExplodeSteps();
+        secondsRemaining = Wrath.get().getConfig().getExplodeSeconds();
         
         if (secondsRemaining > 0)
         {
             Wrath.get().getCommunicationManager().message(_target, "You have been set to explode after " + 
                     secondsRemaining + " " + Wrath.get().getCommunicationManager().pluralise(secondsRemaining, "second") + "!");
         }
+        else
+            update(_target);
     }
     
     public void update(Player _target)
@@ -50,9 +52,6 @@ public class Explode extends Executioner
             //explosion.a();
             
             //cw.getHandle().a("explode", location.getX(), location.getY(), location.getZ(), 3, 3, 3);
-            
-            //Block block = _target.getWorld().getBlockAt(_target.getLocation());
-            //block.setType(Material.TNT);
         
             _target.damage(_target.getHealth());
         }
