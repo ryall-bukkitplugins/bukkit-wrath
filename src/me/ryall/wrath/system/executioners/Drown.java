@@ -17,12 +17,12 @@ public class Drown extends Executioner
     
     public boolean hasPermission(Player _player)
     {
-        return Wrath.get().getPermissions().hasDrownPermission(_player);
+        return Wrath.get().getPermissionManager().hasDrownPermission(_player);
     }
 
     public String getMessage()
     {
-        return Wrath.get().getConfig().getDrownMessage();
+        return Wrath.get().getConfigManager().getDrownMessage();
     }
 
     public void begin(Player _target)

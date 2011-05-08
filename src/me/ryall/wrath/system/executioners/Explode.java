@@ -3,6 +3,7 @@ package me.ryall.wrath.system.executioners;
 import org.bukkit.entity.Player;
 
 import me.ryall.wrath.Wrath;
+import me.ryall.wrath.system.ExecutionManager;
 import me.ryall.wrath.system.Executioner;
 
 public class Explode extends Executioner
@@ -11,17 +12,17 @@ public class Explode extends Executioner
     
     public boolean hasPermission(Player _player)
     {
-        return Wrath.get().getPermissions().hasExplodePermission(_player);
+        return Wrath.get().getPermissionManager().hasExplodePermission(_player);
     }
 
     public String getMessage()
     {
-        return Wrath.get().getConfig().getExplodeMessage();
+        return Wrath.get().getConfigManager().getExplodeMessage();
     }
 
     public void begin(Player _target)
     {
-        secondsRemaining = Wrath.get().getConfig().getExplodeSeconds();
+        secondsRemaining = Wrath.get().getConfigManager().getExplodeSeconds();
         
         if (secondsRemaining > 0)
         {
@@ -53,7 +54,7 @@ public class Explode extends Executioner
             
             //cw.getHandle().a("explode", location.getX(), location.getY(), location.getZ(), 3, 3, 3);
         
-            _target.damage(_target.getHealth());
+            ExecutionManager.kill(_target);
         }
     }
 

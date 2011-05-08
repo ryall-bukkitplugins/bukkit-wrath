@@ -2,7 +2,6 @@ package me.ryall.wrath.system;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import me.ryall.wrath.Wrath;
 import me.ryall.wrath.system.executioners.Explode;
 import me.ryall.wrath.system.executioners.Strike;
@@ -61,6 +60,17 @@ public class ExecutionManager
             sentences.remove(_target.getName());
         }
     }
+    
+    public static void kill(Player _target)
+    {
+        // Entity death is not called when using setHealth(0) (this causes a client crash).
+        //executeDeathEvent(_target);
+        
+        // TODO: Interface with scavenger directly until Bukkit is more reliable with its events.
+        
+        // Finally kill the player, without damaging their armour.
+        _target.damage(_target.getHealth());
+    }
 
     public static void onUpdate()
     {
@@ -98,4 +108,20 @@ public class ExecutionManager
             remove(_player);
         }
     }
+    
+    /*private static void executeDeathEvent(Player _target)
+    {
+        List<ItemStack> drops = new ArrayList<ItemStack>();
+        
+        drops.addAll(Arrays.asList(_target.getInventory().getContents()));
+        drops.addAll(Arrays.asList(_target.getInventory().getArmorContents()));
+        
+        EntityDeathEvent deathEvent = new EntityDeathEvent(_target, drops);
+        Wrath.get().getServer().getPluginManager().callEvent(deathEvent);
+        
+        for (ItemStack drop : deathEvent.getDrops())
+        {
+            _target.getWorld().dropItemNaturally(_target.getLocation(), drop);
+        }
+    }*/
 }

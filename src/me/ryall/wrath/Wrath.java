@@ -124,14 +124,22 @@ public class Wrath extends JavaPlugin
                     {
                         if (executioner.hasPermission(player))
                         {
-                            ExecutionManager.add(executioner, player, target, flags);
+                            if (!permissionManager.hasProtectionPermission(target)) 
+                            {
+                                ExecutionManager.add(executioner, player, target, flags);
 
-                            communicationManager.message(player, "Executed the '" + commandName + "' command on '" + playerName + "'");
-                        } else
+                                communicationManager.message(player, "You successfully used the '" + commandName + "' command on '" + playerName + "'");
+                            } 
+                            else
+                                communicationManager.error(player, "You cannot use this command on '" + playerName + "'.");
+                        } 
+                        else
                             communicationManager.error(player, "You don't have permission to use the '" + commandName + "' command.");
-                    } else
+                    } 
+                    else
                         communicationManager.error(player, "Could not find the player '" + playerName + "'.");
-                } else
+                } 
+                else
                     communicationManager.error(player, "Could not execute the command '" + commandName + "'.");
             }
             // If we don't supply enough arguments, show the help.
@@ -167,12 +175,12 @@ public class Wrath extends JavaPlugin
         return null;
     }
 
-    public ConfigManager getConfig()
+    public ConfigManager getConfigManager()
     {
         return configManager;
     }
 
-    public PermissionManager getPermissions()
+    public PermissionManager getPermissionManager()
     {
         return permissionManager;
     }

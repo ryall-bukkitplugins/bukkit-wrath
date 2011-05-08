@@ -62,6 +62,11 @@ public class PermissionManager
     {
         return hasGlobalPermission(_player) || hasPermission(_player, PERMISSIONS_PREFIX + "strike");
     }
+    
+    public boolean hasProtectionPermission(Player _player)
+    {
+        return _player == null || hasPermission(_player, PERMISSIONS_PREFIX + "protected");
+    }
 
     private boolean hasPermission(Player _player, String _permission)
     {

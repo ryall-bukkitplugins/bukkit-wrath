@@ -8,6 +8,8 @@ public class ServerListener extends org.bukkit.event.server.ServerListener
 {
     public void onPluginEnable(PluginEnableEvent _event)
     {
-        Wrath.get().getPermissions().load();
+        Wrath.get().getPermissionManager().load();
+        
+        
     }
 }
